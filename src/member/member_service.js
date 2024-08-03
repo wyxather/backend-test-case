@@ -42,7 +42,7 @@ export async function insert_or_replace_member_by_id(id, new_member) {
     update: {
       code: new_member.code,
       name: new_member.name,
-      penalized_until: null,
+      penalized_until: new_member.penalized_until,
       borrowed_books: new_member.borrowed_books,
     },
   });
@@ -55,7 +55,7 @@ export async function update_member_by_id(id, member) {
     data: {
       code: member.code,
       name: member.name,
-      penalized_until: null,
+      penalized_until: member.penalized_until,
       borrowed_books: member.borrowed_books,
     },
   });
