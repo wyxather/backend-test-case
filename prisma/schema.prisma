@@ -15,9 +15,15 @@ model Book {
   stock  Int
 }
 
+type BorrowedBook {
+  book_id     String
+  borrowed_at DateTime
+}
+
 model Member {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
   code            String
   name            String
   penalized_until DateTime?
+  borrowed_books  BorrowedBook[]
 }

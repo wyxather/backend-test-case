@@ -61,3 +61,16 @@ export async function update_book_by_id(id, book) {
   });
   return updated_book;
 }
+
+export async function update_book(book, new_book) {
+  const updated_book = await prisma.book.update({
+    where: { ...book },
+    data: {
+      code: new_book.code,
+      title: new_book.title,
+      author: new_book.author,
+      stock: new_book.stock,
+    },
+  });
+  return updated_book;
+}
