@@ -62,7 +62,7 @@ export async function update_book_by_id(id, book) {
   return updated_book;
 }
 
-export async function update_book(book, new_book) {
+export async function update_book(prisma, book, new_book) {
   const updated_book = await prisma.book.update({
     where: { ...book },
     data: {

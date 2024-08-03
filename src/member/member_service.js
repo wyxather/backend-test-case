@@ -62,7 +62,7 @@ export async function update_member_by_id(id, member) {
   return updated_member;
 }
 
-export async function update_member(member, new_member) {
+export async function update_member(prisma, member, new_member) {
   const updated_member = await prisma.member.update({
     where: { ...member },
     data: {
