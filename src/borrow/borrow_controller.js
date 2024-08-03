@@ -1,6 +1,6 @@
 import express from "express";
 import { prisma } from "../app.js";
-import { borrow_book_by_id } from "./borrow_services.js";
+import { borrow_book_by_id } from "./borrow_service.js";
 
 const router = express.Router();
 
