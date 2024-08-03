@@ -1,9 +1,8 @@
-import { prisma } from "../app.js";
 import { update_book } from "../book/book_service.js";
 import { find_member_by_id, update_member } from "../member/member_service.js";
 
-export async function borrow_book_by_id(member_id, book_id) {
-  const found_member = await find_member_by_id(member_id);
+export async function borrow_book_by_id(prisma, member_id, book_id) {
+  const found_member = await find_member_by_id(prisma, member_id);
   if (found_member == null) {
     throw new Error("Member doesn't exist.");
   }

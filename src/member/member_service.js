@@ -1,16 +1,14 @@
-import { prisma } from "../app.js";
-
-export async function get_all_members() {
+export async function get_all_members(prisma) {
   const members = await prisma.member.findMany();
   return members;
 }
 
-export async function find_member_by_id(id) {
+export async function find_member_by_id(prisma, id) {
   const found_member = await prisma.member.findUnique({ where: { id } });
   return found_member;
 }
 
-export async function insert_new_member(new_member) {
+export async function insert_new_member(prisma, new_member) {
   const inserted_member = await prisma.member.create({
     data: {
       code: new_member.code,
@@ -22,14 +20,14 @@ export async function insert_new_member(new_member) {
   return inserted_member;
 }
 
-export async function delete_member_by_id(id) {
+export async function delete_member_by_id(prisma, id) {
   const deleted_member = await prisma.member.delete({
     where: { id },
   });
   return deleted_member;
 }
 
-export async function insert_or_replace_member_by_id(id, new_member) {
+export async function insert_or_replace_member_by_id(prisma, id, new_member) {
   const inserted_or_replaced_member = await prisma.member.upsert({
     where: { id },
     create: {
@@ -49,7 +47,7 @@ export async function insert_or_replace_member_by_id(id, new_member) {
   return inserted_or_replaced_member;
 }
 
-export async function update_member_by_id(id, member) {
+export async function update_member_by_id(prisma, id, member) {
   const updated_member = await prisma.member.update({
     where: { id },
     data: {
