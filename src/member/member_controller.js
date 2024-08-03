@@ -14,7 +14,11 @@ const router = express.Router();
 export default router;
 
 router.get("/", async (req, res) => {
-  const members = await get_all_members(prisma);
+  let members = await get_all_members(prisma);
+  members = members.map((member) => ({
+    ...member,
+    borrowed_books_count: member.borrowed_books.length,
+  }));
   return res.send(members);
 });
 
